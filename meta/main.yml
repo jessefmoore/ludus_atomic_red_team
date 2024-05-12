@@ -1,0 +1,22 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: ludus_atomic_red_team
+  author: PrymalInstynct
+  description: An Ansible Role that installs Atomic Red Team on Windows >= 10 hosts
+  company: ''
+  license: GPLv3
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Windows 
+      versions:
+        - "2019"
+        - "2022"
+  galaxy_tags:
+    - hacking
+    - offsec
+
+collections:
+  - ansible.windows
+  - community.windows

@@ -68,11 +68,9 @@
   ansible.windows.win_reboot:
   when: tamper_protection_enabled
 
-- name: Add an trusted repository
-  community.windows.win_psrepository:
-    name: PSGallery
-    installation_policy: trusted
-    state: present
+- name: Make PSGallery trusted
+  ansible.windows.win_shell: |
+    Set-PSRepository -Name PSGallery -InstallationPolicy trusted
 
 - name: Install Dependencies
   community.windows.win_psmodule:

@@ -68,6 +68,12 @@
   ansible.windows.win_reboot:
   when: tamper_protection_enabled
 
+- name: Add an trusted repository
+  community.windows.win_psrepository:
+    name: PSGallery
+    installation_policy: trusted
+    state: present
+
 - name: Install Dependencies
   community.windows.win_psmodule:
     name: powershell-yaml

@@ -68,22 +68,7 @@
   ansible.windows.win_reboot:
   when: tamper_protection_enabled
 
-- name: Make PSGallery trusted
-  ansible.windows.win_powershell:
-    script: |
-      Set-PSRepository -Name PSGallery -InstallationPolicy trusted
-
-- name: Install Dependencies
-  community.windows.win_psmodule:
-    name: powershell-yaml
-    state: present
-
-- name: Install Invoke-AtomicRedTeam
-  community.windows.win_psmodule:
-    name: invoke-atomicredteam
-    state: present
-
-- name: Install Atomic Tests
+- name: Install Atomic Red Team and Atomic Tests
   ansible.builtin.script:
     cmd: install_atomics.bat
 

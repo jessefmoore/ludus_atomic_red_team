@@ -69,8 +69,10 @@
   when: tamper_protection_enabled
 
 - name: Install Atomic Red Team and Atomic Tests
-  ansible.builtin.script:
-    cmd: install_atomics.bat
+  ansible.windows_powershell:
+    script: |
+      IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing);
+      Install-AtomicRedTeam -getAtomics
 
 - name: Success
   ansible.builtin.debug:

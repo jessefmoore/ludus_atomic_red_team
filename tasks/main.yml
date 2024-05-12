@@ -26,7 +26,7 @@
   ansible.windows.win_shell: $PSVersionTable.PSVersion.Major
   register: ps_version_output
 
-- name: Ensure host is >= Windows 10
+- name: Ensure Powershell is >= 5
   ansible.builtin.assert:
     that: (ps_version_output.stdout | trim) is version_compare('5', '>=')
     fail_msg: "Host is not running Powershell 5 or newer"
@@ -69,6 +69,7 @@
     script: |
       IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing);
       Install-AtomicRedTeam -getAtomics
+      Import-Module "C:\AtomicRedTeam\invoke-atomicredteam\Invoke-AtomicRedTeam.psd1" -Force
 
 - name: Success
   ansible.builtin.debug:

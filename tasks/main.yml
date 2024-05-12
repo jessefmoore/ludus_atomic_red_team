@@ -69,7 +69,12 @@
     script: |
       IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing);
       Install-AtomicRedTeam -getAtomics
-      Import-Module "C:\AtomicRedTeam\invoke-atomicredteam\Invoke-AtomicRedTeam.psd1" -Force
+
+- name: Setup Powershell Profiles
+  community.windows.win_lineinfile:
+    path: C:\Users\localuser\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+    line: Import-Module "C:\AtomicRedTeam\invoke-atomicredteam\Invoke-AtomicRedTeam.psd1" -Force
+    create: true
 
 - name: Success
   ansible.builtin.debug:

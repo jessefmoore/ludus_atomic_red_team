@@ -67,8 +67,7 @@
 - name: Install Atomic Red Team and Atomic Tests
   ansible.windows.win_powershell:
     script: |
-      IEX (IWR 'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing);
-      Install-AtomicRedTeam -getAtomics
+      powershell -nop -exec bypass -c "IEX (New-Object Net.WebClient).DownloadString('https://gist.githubusercontent.com/jessefmoore/800284d3f5cf8b168b88c774994d3ccd/raw/90d6ee0b4dd4f208227335d11e3f937b57757f31/InstallArt.ps1')"
 
 - name: Setup Powershell Profiles
   community.windows.win_lineinfile:
